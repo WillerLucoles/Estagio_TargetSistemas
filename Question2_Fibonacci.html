@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci Checker</title>
+</head>
+<body>
+    <h1>Fibonacci Checker</h1>
+    <label for="inputNumber">Digite um número:</label>
+    <input type="text" id="inputNumber" placeholder="Digite apenas números">
+    <button onclick="checkFibonacci()">Verificar</button>
+    <p id="resultMessage"></p>
+    <p id="fibonacciSequence"></p>
+
+    <script>
+        function isFibonacciNumber(num) {
+            let a = 0;
+            let b = 1;
+
+            while (b < num) {
+                let temp = b;
+                b = a + b;
+                a = temp;
+            }
+
+            return b === num;
+        }
+
+        function fibonacciSequence(n) {
+            const sequence = [0, 1];
+
+            for (let i = 2; i < n; i++) {
+                sequence[i] = sequence[i - 1] + sequence[i - 2];
+            }
+
+            return sequence;
+        }
+
+        function checkFibonacci() {
+            const inputNumber = document.getElementById('inputNumber').value;
+            const resultMessageElement = document.getElementById('resultMessage');
+            const fibonacciSequenceElement = document.getElementById('fibonacciSequence');
+
+            if (!isNaN(inputNumber) && inputNumber !== "") {
+                const num = parseInt(inputNumber);
+                if (isFibonacciNumber(num)) {
+                    resultMessageElement.textContent = `${num} pertence à sequência de Fibonacci.`;
+                } else {
+                    resultMessageElement.textContent = `${num} não pertence à sequência de Fibonacci.`;
+                }
+
+                const sequence = fibonacciSequence(20); // Os primeiros 20 números da sequência de Fibonacci
+                fibonacciSequenceElement.textContent = `Sequência de Fibonacci (primeiros 20 números): ${sequence.join(', ')}`;
+            } else {
+                resultMessageElement.textContent = 'Por favor, digite um número válido.';
+                fibonacciSequenceElement.textContent = '';
+            }
+        }
+    </script>
+</body>
+</html>
