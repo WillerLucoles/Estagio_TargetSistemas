@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Inverter</title>
+</head>
+<body>
+    <h1>String Inverter</h1>
+    <label for="inputString">Digite uma string:</label>
+    <input type="text" id="inputString" placeholder="Insira uma string">
+    <button onclick="invertString()">Inverter</button>
+    <p id="invertedString"></p>
+
+    <script>
+        function invertString() {
+            const inputString = document.getElementById('inputString').value;
+            const invertedStringElement = document.getElementById('invertedString');
+
+            // Verifica se a string não está vazia
+            if (inputString !== "") {
+                // Inverte os caracteres
+                let invertedString = "";
+                for (let i = inputString.length - 1; i >= 0; i--) {
+                    invertedString += inputString[i];
+                }
+
+                invertedStringElement.textContent = `String Invertida: ${invertedString}`;
+            } else {
+                invertedStringElement.textContent = 'Por favor, insira uma string válida.';
+            }
+        }
+    </script>
+</body>
+</html>
